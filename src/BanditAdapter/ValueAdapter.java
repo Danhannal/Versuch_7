@@ -6,6 +6,7 @@ package BanditAdapter;
 
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
+import javax.swing.JLabel;
 import view.MainWindowBandit;
 import versuch_6.*;
 
@@ -16,12 +17,12 @@ import versuch_6.*;
 public class ValueAdapter implements Subscriber<Integer>
 {
     private Flow.Subscription subscription;
-    private final MainWindowBandit view;
+    private final JLabel label;
     private final WuerfelModel model;
     
-    public ValueAdapter(MainWindowBandit viewInp, WuerfelModel modelInp)
+    public ValueAdapter(JLabel labelInp, WuerfelModel modelInp)
     {
-        view = viewInp;
+        label = labelInp;
         model = modelInp;
     }
 
@@ -38,7 +39,7 @@ public class ValueAdapter implements Subscriber<Integer>
 
     @Override
     public void onNext(Integer item) {
-        view.getLblNumber2().setText(String.valueOf(item));
+        label.setText(String.valueOf(item));
         subscription.request(1);
     }
 

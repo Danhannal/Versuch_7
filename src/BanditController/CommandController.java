@@ -4,7 +4,7 @@
  */
 package BanditController;
 
-import BanditAdapter.ValueAdapter;
+import BanditAdapter.*;
 import BanditController.Commands.StartCommand;
 import BanditController.Commands.StopCommand;
 import java.awt.Component;
@@ -21,14 +21,18 @@ public class CommandController implements ActionListener
 {
     MainWindowBandit view;
     WuerfelModel model;
-    ValueAdapter valueObserver;
+    ValueAdapter value0Subscriber;
+    ValueAdapter value1Subscriber;
+    ValueAdapter value2Subscriber;
     CommandInvoker invoker;
     
-    public CommandController(MainWindowBandit viewInp, WuerfelModel modelInp, ValueAdapter valueObserverInp)
+    public CommandController(MainWindowBandit viewInp, WuerfelModel modelInp, ValueAdapter value0SubscriberInp, ValueAdapter value1SubscriberInp, ValueAdapter value2SubscriberInp)
     {
         view = viewInp;
         model = modelInp;
-        valueObserver = valueObserverInp;
+        value0Subscriber = value0SubscriberInp;
+        value1Subscriber = value1SubscriberInp;
+        value2Subscriber = value2SubscriberInp;
         invoker = new CommandInvoker();
     }
     
@@ -36,7 +40,7 @@ public class CommandController implements ActionListener
     {
         view.getBtnStart().addActionListener(this);
         view.getBtnStop().addActionListener(this);
-        valueObserver.subscribe();
+        value2Subscriber.subscribe();
     }
     
     public void registerCommands()

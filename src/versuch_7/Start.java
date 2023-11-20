@@ -4,7 +4,7 @@
  */
 package versuch_7;
 
-import BanditAdapter.ValueAdapter;
+import BanditAdapter.*;
 import BanditController.CommandController;
 import view.MainWindowBandit;
 import versuch_6.WuerfelModel;
@@ -19,8 +19,10 @@ public class Start {
     {
         var view = new MainWindowBandit();
         var model = new WuerfelModel();
-        var valueObserver = new ValueAdapter(view, model);
-        var controller = new CommandController(view, model, valueObserver);
+        var value0Observer = new ValueAdapter(view.getLblNumber2(), model);
+        var value1Observer = new ValueAdapter(view.getLblNumber1(), model);
+        var value2Observer = new ValueAdapter(view.getLblNumber2(), model);
+        var controller = new CommandController(view, model, value0Observer, value1Observer, value0Observer);
         controller.registerCommands();
         controller.registerEvents();
         view.setTitle("Digitaler Würfel 2");

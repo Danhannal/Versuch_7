@@ -27,16 +27,20 @@ public class StateAdapter implements Subscriber<Boolean>
     
     public void subscribe()
     {
+        model.addStateObserver(this);
     }
 
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.subscription = subscription;
+        subscription.request(1);
     }
 
     @Override
     public void onNext(Boolean item) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        view.getBtnStart().setEnabled(item);
+        view.getBtnStop().setEnabled(!item);
+        subscription.request(1);
     }
 
     @Override
