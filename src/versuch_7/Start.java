@@ -4,17 +4,31 @@
  */
 package versuch_7;
 
+import BanditAdapter.ValueAdapter;
+import BanditController.CommandController;
+import view.MainWindowBandit;
+import versuch_6.WuerfelModel;
+
 /**
  *
  * @author MOD-USER
  */
 public class Start {
 
-    /**
-     * @param args the command line arguments
-     */
+    public Start()
+    {
+        var view = new MainWindowBandit();
+        var model = new WuerfelModel();
+        var valueObserver = new ValueAdapter(view, model);
+        var controller = new CommandController(view, model, valueObserver);
+        controller.registerCommands();
+        controller.registerEvents();
+        view.setTitle("Digitaler Würfel 2");
+        view.setVisible(true);
+    }
+        
     public static void main(String[] args) {
-        // TODO code application logic here
+        new Start();
     }
     
 }
