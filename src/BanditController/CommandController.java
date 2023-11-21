@@ -24,15 +24,17 @@ public class CommandController implements ActionListener
     ValueAdapter value0Subscriber;
     ValueAdapter value1Subscriber;
     ValueAdapter value2Subscriber;
+    StateAdapter stateSubscriber;
     CommandInvoker invoker;
     
-    public CommandController(MainWindowBandit viewInp, WuerfelModel modelInp, ValueAdapter value0SubscriberInp, ValueAdapter value1SubscriberInp, ValueAdapter value2SubscriberInp)
+    public CommandController(MainWindowBandit viewInp, WuerfelModel modelInp, ValueAdapter value0SubscriberInp, ValueAdapter value1SubscriberInp, ValueAdapter value2SubscriberInp, StateAdapter stateSubscriberInp)
     {
         view = viewInp;
         model = modelInp;
         value0Subscriber = value0SubscriberInp;
         value1Subscriber = value1SubscriberInp;
         value2Subscriber = value2SubscriberInp;
+        stateSubscriber = stateSubscriberInp;
         invoker = new CommandInvoker();
     }
     
@@ -41,6 +43,7 @@ public class CommandController implements ActionListener
         view.getBtnStart().addActionListener(this);
         view.getBtnStop().addActionListener(this);
         value2Subscriber.subscribe();
+        //stateSubscriber.subscribe(); //not working yet
     }
     
     public void registerCommands()
