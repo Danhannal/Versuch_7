@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import view.MainWindowBandit;
 import versuch_7.*;
 import Model.*;
-import view.MainWindow;
 
 /**
  *
@@ -33,7 +32,7 @@ public class ValueAdapter implements Subscriber<BanditData>
 
     public void subscribe()
     {
-        model.addObserver(this);
+        model.addValueObserver(this);
     }
     
     @Override

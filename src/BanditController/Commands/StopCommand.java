@@ -6,7 +6,7 @@ package BanditController.Commands;
 
 import BanditController.CommandInterface;
 import view.MainWindowBandit;
-import versuch_6.*;
+import Model.*;
 
 /**
  *
@@ -15,9 +15,9 @@ import versuch_6.*;
 public class StopCommand implements CommandInterface
 {
     private final MainWindowBandit view;
-    private final WuerfelModel model;
+    private final Model model;
     
-    public StopCommand(MainWindowBandit viewInp, WuerfelModel modelInp)
+    public StopCommand(MainWindowBandit viewInp, Model modelInp)
     {
         view = viewInp;
         model = modelInp;

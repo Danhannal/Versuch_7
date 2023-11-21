@@ -11,7 +11,7 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import view.MainWindowBandit;
-import versuch_6.*;
+import Model.*;
 
 /**
  *
@@ -20,12 +20,12 @@ import versuch_6.*;
 public class CommandController implements ActionListener
 {
     MainWindowBandit view;
-    WuerfelModel model;
+    Model model;
     ValueAdapter valueSubscriber;
     StateAdapter stateSubscriber;
     CommandInvoker invoker;
     
-    public CommandController(MainWindowBandit viewInp, WuerfelModel modelInp, ValueAdapter valueSubscriberInp, StateAdapter stateSubscriberInp)
+    public CommandController(MainWindowBandit viewInp, Model modelInp, ValueAdapter valueSubscriberInp, StateAdapter stateSubscriberInp)
     {
         view = viewInp;
         model = modelInp;
