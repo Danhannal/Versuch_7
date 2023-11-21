@@ -7,32 +7,39 @@ package Model;
 
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
+import versuch_7.BanditData;
 
 /**
  *
  * @author Kieran
  */
-public class Model implements Subscriber <Integer>
+
+//add javadoc
+
+
+public class Model implements Subscriber <BanditData>
 {
   private ModelThreads runningThread1;
   private ModelThreads runningThread2;
-  private ModelThreads runningThread3;
+  private ModelThreads runningThread0;
   
-  private Thread thrd1;
+/*  private Thread thrd1;
   private Thread thrd2;
-  private Thread thrd3;
+  private Thread thrd3;*/
   
-  private boolean threadRunning = false;
+  //private boolean threadRunning = false;
   
   
   public Model()
   {
-  
+    runningThread0 = new ModelThreads(0);
+    runningThread1 = new ModelThreads(1);
+    runningThread2 = new ModelThreads(2);
   }
   
   public void start()
   {
-    if(threadRunning == false)
+    /*if(threadRunning == false)
     {
     thrd1 = new Thread(runningThread1);
     thrd1.start();
@@ -40,33 +47,34 @@ public class Model implements Subscriber <Integer>
     thrd2 = new Thread(runningThread2);
     thrd2.start();
     
-    thrd3 = new Thread(runningThread3);
+    thrd3 = new Thread(runningThread0);
     thrd3.start();
     
     
     runningThread1.start();
     runningThread2.start();
-    runningThread3.start();
+    runningThread0.start();
     threadRunning = true;
     }
-    else{    
+    else{ */   
     runningThread1.start();
     runningThread2.start();
-    runningThread3.start();
+    runningThread0.start();
       //thd.notify();
-    }
+    //}
   }
     public void stop()
   {
     runningThread1.stop();
     runningThread2.stop();
-    runningThread3.stop();
+    runningThread0.stop();
 
   }
-  public void addValueObserver(Flow.Subscriber<Integer> subscriber, int ID)
+  public void addValueObserver(Flow.Subscriber<BanditData> subscriber)
   {
     //runningThread.addValueSubscriber(subscriber);
   }
+  
   @Override
   public void onSubscribe(Flow.Subscription subscription)
   {
@@ -75,7 +83,7 @@ public class Model implements Subscriber <Integer>
   }
 
   @Override
-  public void onNext(Integer item)
+  public void onNext(BanditData item)
   {
     //when update comes from subscription
   }

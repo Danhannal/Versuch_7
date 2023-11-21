@@ -15,6 +15,12 @@ import versuch_7.BanditData;
  *
  * @author Kieran
  */
+
+
+//add javadoc
+
+
+
 public class ModelThreads implements Runnable
 {
   private int runFrom = 1;
@@ -22,6 +28,7 @@ public class ModelThreads implements Runnable
   private BanditData currentNumber;
   
   public volatile boolean running;
+  private boolean started = false;
   
   private ExecutorService eService;
   private SubmissionPublisher <BanditData> numberPublisher;
@@ -38,7 +45,7 @@ public class ModelThreads implements Runnable
   }
   public void addValueSubscriber(Flow.Subscriber<BanditData> subscriber)
   {
-    numberPublisher.subscribe();
+   // numberPublisher.subscribe();
   }
   public synchronized void stop()
   {
@@ -48,8 +55,14 @@ public class ModelThreads implements Runnable
    }
    public synchronized void start()
    {
+     if(started)
+     {
+       eService.execute(this);
+       started = true;
+     /*add executeer service*/
+     }
      running = true;
-     //add executeer service
+     
      this.notify();
    }
 
@@ -71,8 +84,8 @@ public class ModelThreads implements Runnable
       {
         //Logger.getLogger(WuerfelModel.class.getName().severe(exception.toString()));
       }
-      if(currentNumber >= runTo){currentNumber = runFrom;}
-      else{currentNumber +=1;}
+      if(currentNumber.getValue() >= runTo){currentNumber.changeValue(runFrom);}
+      else{currentNumber.changeValue(currentNumber.getValue() + 1); }
       //publish new number
 
       numberPublisher.submit(currentNumber);  
