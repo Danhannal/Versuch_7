@@ -27,7 +27,7 @@ public class StateAdapter implements Subscriber<Boolean>
     
     public void subscribe()
     {
-        model.addStateObserver(this);
+        //model.addStateObserver(this);
     }
 
     @Override
