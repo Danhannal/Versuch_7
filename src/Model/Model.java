@@ -63,7 +63,10 @@ public class Model implements Subscriber <Integer>
     runningThread3.stop();
 
   }
-
+  public void addValueObserver(Flow.Subscriber<Integer> subscriber, int ID)
+  {
+    //runningThread.addValueSubscriber(subscriber);
+  }
   @Override
   public void onSubscribe(Flow.Subscription subscription)
   {

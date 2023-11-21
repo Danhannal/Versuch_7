@@ -28,6 +28,7 @@ public class ModelThreads implements Runnable
   
   public ModelThreads()
   {
+    //add constructor with reference number
     eService = Executors.newSingleThreadExecutor();
     numberPublisher = new SubmissionPublisher<>();
     //statusPublisher = new SubmissionPublisher<>();
@@ -70,7 +71,8 @@ public class ModelThreads implements Runnable
       else{currentNumber +=1;}
       //publish new number
 
-      numberPublisher.submit(currentNumber);      
+      numberPublisher.submit(currentNumber);  
+      //submit an object with ID
     }
   }
   
