@@ -22,7 +22,8 @@ public class Start {
         var value0Observer = new ValueAdapter(view.getLblNumber2(), model);
         var value1Observer = new ValueAdapter(view.getLblNumber1(), model);
         var value2Observer = new ValueAdapter(view.getLblNumber2(), model);
-        var controller = new CommandController(view, model, value0Observer, value1Observer, value0Observer);
+        var stateObserver = new StateAdapter(view, model);
+        var controller = new CommandController(view, model, value0Observer, value1Observer, value0Observer, stateObserver);
         controller.registerCommands();
         controller.registerEvents();
         view.setTitle("Digitaler Würfel 2");
