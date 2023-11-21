@@ -5,11 +5,14 @@
 
 package Model;
 
+import java.util.concurrent.Flow;
+import java.util.concurrent.Flow.Subscriber;
+
 /**
  *
  * @author Kieran
  */
-public class Model 
+public class Model implements Subscriber <Integer>
 {
   private ModelThreads runningThread1;
   private ModelThreads runningThread2;
@@ -20,7 +23,8 @@ public class Model
   private Thread thrd3;
   
   private boolean threadRunning = false;
-
+  
+  
   public Model()
   {
   
@@ -51,21 +55,36 @@ public class Model
     runningThread3.start();
       //thd.notify();
     }
-    //V1 start publishing thread
-    //runningThread.statusPublisher.submit(true);
-
-    //V2 create thread to run in
-    //V3 notify to exit wait state of thread
   }
     public void stop()
   {
-    //V1 Stop publishing
-   
-    //runningThread.statusPublisher.submit(false);
     runningThread1.stop();
     runningThread2.stop();
     runningThread3.stop();
-    //V2 destroy thread
-    //V3 wait thread
+
+  }
+
+  @Override
+  public void onSubscribe(Flow.Subscription subscription)
+  {
+    //when this is subscribed to smth
+    //getClass to check identity
+  }
+
+  @Override
+  public void onNext(Integer item)
+  {
+    //when update comes from subscription
+  }
+
+  @Override
+  public void onError(Throwable throwable)
+  {
+    //add logger
+  }
+
+  @Override
+  public void onComplete()
+  {
   }
 }
