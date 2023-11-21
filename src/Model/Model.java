@@ -7,6 +7,7 @@ package Model;
 
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
+import java.util.concurrent.SubmissionPublisher;
 import versuch_7.BanditData;
 
 /**
@@ -23,6 +24,9 @@ public class Model implements Subscriber <BanditData>
   private ModelThreads runningThread2;
   private ModelThreads runningThread0;
   
+  private SubmissionPublisher <BanditData> numberPublisher;
+  private Flow.Subscription subscription;
+
 /*  private Thread thrd1;
   private Thread thrd2;
   private Thread thrd3;*/
@@ -78,6 +82,8 @@ public class Model implements Subscriber <BanditData>
   @Override
   public void onSubscribe(Flow.Subscription subscription)
   {
+    this.subscription = subscription;
+    subscription.request(1);
     //when this is subscribed to smth
     //getClass to check identity
   }
@@ -85,6 +91,9 @@ public class Model implements Subscriber <BanditData>
   @Override
   public void onNext(BanditData item)
   {
+    numberPublisher.submit(item);  
+    subscription.request(1);
+
     //when update comes from subscription
   }
 
