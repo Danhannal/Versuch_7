@@ -42,10 +42,10 @@ public class BanditData
   }
 
   /**
-   *
+   * This method returns the value of the Data Class
    * @return value
    * 
-   * This method returns the value of the Data Class
+   *
    */
   public int getValue()
   {
