@@ -30,6 +30,9 @@ public class ModelThreads implements Runnable
   private int threadID;
   private BanditData currentNumber;
   
+  /**
+   *
+   */
   public volatile boolean running;
   private boolean started = false;
   
@@ -40,6 +43,10 @@ public class ModelThreads implements Runnable
   private static Logger logger = OhmLogger.getLogger();
 //private static final Logger LOGGER = Logger.getLogger( ClassName.class.getName() );
 
+  /**
+   *
+   * @param ID
+   */
   public ModelThreads(int ID)
   {
     //add constructor with reference number
@@ -50,19 +57,32 @@ public class ModelThreads implements Runnable
     logger.info("Constructor called");
     //statusPublisher = new SubmissionPublisher<>();
   }
+
+  /**
+   *
+   * @param subscriber
+   */
   public void addValueSubscriber(Flow.Subscriber<BanditData> subscriber)
   {
    numberPublisher.subscribe(subscriber);
    logger.info("addValueSubscriber called");
 
   }
+
+  /**
+   *
+   */
   public synchronized void stop()
   {
      running = false;
      //set var that causes this.wait in run that uses while
 
    }
-   public synchronized void start()
+
+  /**
+   *
+   */
+  public synchronized void start()
    {
      if(!started)
      {
@@ -76,6 +96,9 @@ public class ModelThreads implements Runnable
      this.notify();
    }
 
+  /**
+   *
+   */
   @Override
   public void run()
   {
