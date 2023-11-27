@@ -5,6 +5,8 @@
 
 package Model;
 
+import OhmLogger.OhmLogger;
+import java.util.logging.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Flow;
@@ -34,6 +36,9 @@ public class ModelThreads implements Runnable
   private SubmissionPublisher <BanditData> numberPublisher;
   //public SubmissionPublisher <Boolean> statusPublisher;
   
+  private static Logger logger = OhmLogger.getLogger();
+//private static final Logger LOGGER = Logger.getLogger( ClassName.class.getName() );
+
   public ModelThreads(int ID)
   {
     //add constructor with reference number
@@ -41,6 +46,7 @@ public class ModelThreads implements Runnable
     
     eService = Executors.newSingleThreadExecutor();
     numberPublisher = new SubmissionPublisher<>();
+    logger.info("Constructor called");
     //statusPublisher = new SubmissionPublisher<>();
   }
   public void addValueSubscriber(Flow.Subscriber<BanditData> subscriber)

@@ -13,26 +13,26 @@ import java.util.logging.*;
  */
 public class OhmLogger 
 {
-  private static Logger lg = null;
+  private static Logger logger = null;
   public OhmLogger()
   {
   }
   
   public static Logger getLogger()
   {
-    if (lg == null)
+    if (logger == null)
     {
-      lg = Logger.getLogger("OhmLogger");
+      logger = Logger.getLogger("OhmLogger");
       initLogger();
     }
-    return lg;
+    return logger;
   }
   
   private static void initLogger()
   {
     ConsoleHandler consoleHandler = new ConsoleHandler();
     consoleHandler.setFormatter(new OhmFormatter());
-    lg.addHandler(consoleHandler);
+    logger.addHandler(consoleHandler);
   }
 }
 

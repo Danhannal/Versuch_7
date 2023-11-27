@@ -33,6 +33,7 @@ public class Model implements Subscriber <BanditData>
     runningThread1 = new ModelThreads(1);
     runningThread2 = new ModelThreads(2);
     
+    
     numberPublisher = new SubmissionPublisher<>();
 
   }
