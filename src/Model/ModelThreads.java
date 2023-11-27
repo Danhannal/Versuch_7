@@ -27,6 +27,7 @@ public class ModelThreads implements Runnable
 {
   private int runFrom = 1;
   private int runTo = 6;
+  private int threadID;
   private BanditData currentNumber;
   
   public volatile boolean running;
@@ -43,7 +44,7 @@ public class ModelThreads implements Runnable
   {
     //add constructor with reference number
     currentNumber = new BanditData(runFrom,ID);
-    
+    threadID = ID;
     eService = Executors.newSingleThreadExecutor();
     numberPublisher = new SubmissionPublisher<>();
     logger.info("Constructor called");
@@ -70,7 +71,8 @@ public class ModelThreads implements Runnable
        /*add executeer service*/
      }
      running = true;
-     
+     logger.info("start thread called");
+
      this.notify();
    }
 
@@ -90,10 +92,12 @@ public class ModelThreads implements Runnable
       }
       catch(InterruptedException exception)
       {
+        logger.severe(String.valueOf(exception));
+
         //Logger.getLogger(WuerfelModel.class.getName().severe(exception.toString()));
       }
       if(currentNumber.getValue() >= runTo){currentNumber.changeValue(runFrom);}
-      else{currentNumber.changeValue(currentNumber.getValue() + 1); }
+      else{currentNumber.changeValue(currentNumber.getValue() + 1);     logger.info(" incremented number: "+String.valueOf(threadID)+" current number: "+String.valueOf(currentNumber.getValue()));}
       //publish new number
 
       numberPublisher.submit(currentNumber);  
