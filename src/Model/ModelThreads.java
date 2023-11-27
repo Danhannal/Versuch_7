@@ -52,6 +52,8 @@ public class ModelThreads implements Runnable
   public void addValueSubscriber(Flow.Subscriber<BanditData> subscriber)
   {
    numberPublisher.subscribe(subscriber);
+   logger.info("addValueSubscriber called");
+
   }
   public synchronized void stop()
   {
@@ -65,7 +67,7 @@ public class ModelThreads implements Runnable
      {
        eService.execute(this);
        started = true;
-     /*add executeer service*/
+       /*add executeer service*/
      }
      running = true;
      
