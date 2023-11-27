@@ -27,6 +27,9 @@ public class Model implements Subscriber <BanditData>
   private SubmissionPublisher <BanditData> numberPublisher;
   private Flow.Subscription subscription;
 
+  /**
+   *
+   */
   public Model()
   {
     runningThread0 = new ModelThreads(0);
@@ -41,19 +44,31 @@ public class Model implements Subscriber <BanditData>
 
   }
   
+  /**
+   *
+   */
   public void start()
   {
     runningThread1.start();
     runningThread2.start();
     runningThread0.start();
   }
-    public void stop()
+
+  /**
+   *
+   */
+  public void stop()
   {
     runningThread1.stop();
     runningThread2.stop();
     runningThread0.stop();
 
   }
+
+  /**
+   *
+   * @param subscriber
+   */
   public void addValueObserver(Flow.Subscriber<BanditData> subscriber)
   {
     numberPublisher.subscribe(subscriber);
@@ -61,6 +76,10 @@ public class Model implements Subscriber <BanditData>
     runningThread2.addValueSubscriber(subscriber);*/
   }
   
+  /**
+   *
+   * @param subscription
+   */
   @Override
   public void onSubscribe(Flow.Subscription subscription)
   {
@@ -70,6 +89,10 @@ public class Model implements Subscriber <BanditData>
     //getClass to check identity
   }
 
+  /**
+   *
+   * @param item
+   */
   @Override
   public void onNext(BanditData item)
   {
@@ -79,12 +102,19 @@ public class Model implements Subscriber <BanditData>
     //when update comes from subscription
   }
 
+  /**
+   *
+   * @param throwable
+   */
   @Override
   public void onError(Throwable throwable)
   {
     //add logger
   }
 
+  /**
+   *
+   */
   @Override
   public void onComplete()
   {

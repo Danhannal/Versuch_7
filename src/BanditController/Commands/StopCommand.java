@@ -17,13 +17,21 @@ public class StopCommand implements CommandInterface
     private final MainWindowBandit view;
     private final Model model;
     
-    public StopCommand(MainWindowBandit viewInp, Model modelInp)
+  /**
+   *
+   * @param viewInp
+   * @param modelInp
+   */
+  public StopCommand(MainWindowBandit viewInp, Model modelInp)
     {
         view = viewInp;
         model = modelInp;
     }
     
-    @Override
+  /**
+   *
+   */
+  @Override
     public void execute() {
         view.getBtnStart().setEnabled(true);
         view.getBtnStop().setEnabled(false);

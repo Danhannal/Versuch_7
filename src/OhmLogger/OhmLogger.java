@@ -14,10 +14,18 @@ import java.util.logging.*;
 public class OhmLogger 
 {
   private static Logger logger = null;
+
+  /**
+   *
+   */
   public OhmLogger()
   {
   }
   
+  /**
+   *
+   * @return
+   */
   public static Logger getLogger()
   {
     if (logger == null)

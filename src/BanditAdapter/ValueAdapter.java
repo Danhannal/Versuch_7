@@ -22,7 +22,12 @@ public class ValueAdapter implements Subscriber<BanditData>
     private ArrayList<JLabel> labels;
     private final Model model;
     
-    public ValueAdapter(MainWindowBandit view, Model modelInp)
+  /**
+   *
+   * @param view
+   * @param modelInp
+   */
+  public ValueAdapter(MainWindowBandit view, Model modelInp)
     {
         labels = new ArrayList();
         model = modelInp;
@@ -31,30 +36,48 @@ public class ValueAdapter implements Subscriber<BanditData>
         labels.add(view.getLblNumber2());
     }
 
-    public void subscribe()
+  /**
+   *
+   */
+  public void subscribe()
     {
         model.addValueObserver(this);
     }
     
-    @Override
+  /**
+   *
+   * @param subscription
+   */
+  @Override
     public void onSubscribe(Flow.Subscription subscription) {
         this.subscription = subscription;
         subscription.request(1);
     }
 
-    @Override
+  /**
+   *
+   * @param item
+   */
+  @Override
     public void onNext(BanditData item) {
         var templabel = labels.get(item.getID());
         templabel.setText(String.valueOf(item.getValue()));
         subscription.request(1);
     }
 
-    @Override
+  /**
+   *
+   * @param throwable
+   */
+  @Override
     public void onError(Throwable throwable) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
+  /**
+   *
+   */
+  @Override
     public void onComplete() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

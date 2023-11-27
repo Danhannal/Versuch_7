@@ -19,36 +19,59 @@ public class StateAdapter implements Subscriber<Boolean>
     private final MainWindowBandit view;
     private final Model model;
     
-    public StateAdapter(MainWindowBandit viewInp, Model modelInp)
+  /**
+   *
+   * @param viewInp
+   * @param modelInp
+   */
+  public StateAdapter(MainWindowBandit viewInp, Model modelInp)
     {
         view = viewInp;
         model = modelInp;
     }
     
-    public void subscribe()
+  /**
+   *
+   */
+  public void subscribe()
     {
         //model.addStateObserver(this);
     }
 
-    @Override
+  /**
+   *
+   * @param subscription
+   */
+  @Override
     public void onSubscribe(Flow.Subscription subscription) {
         this.subscription = subscription;
         subscription.request(1);
     }
 
-    @Override
+  /**
+   *
+   * @param item
+   */
+  @Override
     public void onNext(Boolean item) {
         view.getBtnStart().setEnabled(item);
         view.getBtnStop().setEnabled(!item);
         subscription.request(1);
     }
 
-    @Override
+  /**
+   *
+   * @param throwable
+   */
+  @Override
     public void onError(Throwable throwable) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
+  /**
+   *
+   */
+  @Override
     public void onComplete() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

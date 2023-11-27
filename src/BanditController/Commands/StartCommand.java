@@ -17,13 +17,21 @@ public class StartCommand implements CommandInterface
     private final MainWindowBandit view;
     private final Model model;
     
-    public StartCommand(MainWindowBandit viewInp, Model modelInp)
+  /**
+   *
+   * @param viewInp
+   * @param modelInp
+   */
+  public StartCommand(MainWindowBandit viewInp, Model modelInp)
     {
         view = viewInp;
         model = modelInp;
     }
     
-    @Override
+  /**
+   *
+   */
+  @Override
     public void execute() {
         view.getBtnStart().setEnabled(false);
         view.getBtnStop().setEnabled(true);
