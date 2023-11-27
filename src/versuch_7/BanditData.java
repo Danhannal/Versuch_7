@@ -8,8 +8,12 @@ package versuch_7;
 /**
  *
  * @author Kieran
+ * 
  */
 
+/**
+  * Data class which is used to transfer a value and an ID
+ */
 public class BanditData 
 {
   private int value;
@@ -29,6 +33,8 @@ public class BanditData
   /**
    *
    * @param newValue
+   * 
+   * This method gives access to the value of the Data Class
    */
   public void changeValue(int newValue)
   {
@@ -37,7 +43,9 @@ public class BanditData
 
   /**
    *
-   * @return
+   * @return value
+   * 
+   * This method returns the value of the Data Class
    */
   public int getValue()
   {
@@ -46,7 +54,9 @@ public class BanditData
 
   /**
    *
-   * @return
+   * @return ID
+   * 
+   * This method returns the thread ID it is used in
    */
   public int getID()
   {
