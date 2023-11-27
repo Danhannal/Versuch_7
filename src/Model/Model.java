@@ -7,76 +7,71 @@ package Model;
 
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
+import java.util.concurrent.SubmissionPublisher;
+import versuch_7.BanditData;
 
 /**
  *
  * @author Kieran
  */
-public class Model implements Subscriber <Integer>
+
+//add javadoc
+
+
+public class Model implements Subscriber <BanditData>
 {
   private ModelThreads runningThread1;
   private ModelThreads runningThread2;
-  private ModelThreads runningThread3;
+  private ModelThreads runningThread0;
   
-  private Thread thrd1;
-  private Thread thrd2;
-  private Thread thrd3;
-  
-  private boolean threadRunning = false;
-  
-  
+  private SubmissionPublisher <BanditData> numberPublisher;
+  private Flow.Subscription subscription;
+
   public Model()
   {
-  
+    runningThread0 = new ModelThreads(0);
+    runningThread1 = new ModelThreads(1);
+    runningThread2 = new ModelThreads(2);
+    
+    numberPublisher = new SubmissionPublisher<>();
+
   }
   
   public void start()
   {
-    if(threadRunning == false)
-    {
-    thrd1 = new Thread(runningThread1);
-    thrd1.start();
-    
-    thrd2 = new Thread(runningThread2);
-    thrd2.start();
-    
-    thrd3 = new Thread(runningThread3);
-    thrd3.start();
-    
-    
     runningThread1.start();
     runningThread2.start();
-    runningThread3.start();
-    threadRunning = true;
-    }
-    else{    
-    runningThread1.start();
-    runningThread2.start();
-    runningThread3.start();
-      //thd.notify();
-    }
+    runningThread0.start();
   }
     public void stop()
   {
     runningThread1.stop();
     runningThread2.stop();
-    runningThread3.stop();
+    runningThread0.stop();
 
   }
-  public void addValueObserver(Flow.Subscriber<Integer> subscriber, int ID)
+  public void addValueObserver(Flow.Subscriber<BanditData> subscriber)
   {
-    //runningThread.addValueSubscriber(subscriber);
+    numberPublisher.subscribe(subscriber);
+    /*runningThread1.addValueSubscriber(subscriber);
+    runningThread2.addValueSubscriber(subscriber);*/
   }
+  
   @Override
   public void onSubscribe(Flow.Subscription subscription)
   {
+    this.subscription = subscription;
+    subscription.request(1);
     //when this is subscribed to smth
     //getClass to check identity
   }
 
   @Override
-  public void onNext(Integer item)
+  public void onNext(BanditData item)
   {
+    numberPublisher.submit(item);  
+    subscription.request(1);
+
     //when update comes from subscription
   }
 

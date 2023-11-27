@@ -21,14 +21,17 @@ package versuch_7;
 
 public class BanditData 
 {
-  private final int value;
+  private int value;
   private final int ID;
   public BanditData(int inputValue, int inputID)
   {
     value = inputValue;
     ID = inputID;
   }
-  
+  public void changeValue(int newValue)
+  {
+    value = newValue;
+  }
   public int getValue()
   {
     return value;
