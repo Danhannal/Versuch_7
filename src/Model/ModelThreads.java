@@ -76,6 +76,7 @@ public class ModelThreads implements Runnable
   {
      running = false;
      //set var that causes this.wait in run that uses while
+     logger.info("Thread: "+ String.valueOf(threadID) +" Stopped");
 
    }
 
