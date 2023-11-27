@@ -4,31 +4,35 @@
  */
 package BanditAdapter;
 
+import java.util.List;
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
 import javax.swing.JLabel;
 import view.MainWindowBandit;
-import versuch_6.*;
+import versuch_7.*;
+import Model.*;
 
 /**
  *
  * @author MOD-USER
  */
-public class ValueAdapter implements Subscriber<Integer>
+public class ValueAdapter implements Subscriber<BanditData>
 {
     private Flow.Subscription subscription;
-    private final JLabel label;
-    private final WuerfelModel model;
+    private List<JLabel> labels;
+    private final Model model;
     
-    public ValueAdapter(JLabel labelInp, WuerfelModel modelInp)
+    public ValueAdapter(MainWindowBandit view, Model modelInp)
     {
-        label = labelInp;
         model = modelInp;
+        labels.add(view.getLblNumber0());
+        labels.add(view.getLblNumber1());
+        labels.add(view.getLblNumber2());
     }
 
     public void subscribe()
     {
-        model.addObserver(this);
+        model.addValueObserver(this);
     }
     
     @Override
@@ -38,8 +42,9 @@ public class ValueAdapter implements Subscriber<Integer>
     }
 
     @Override
-    public void onNext(Integer item) {
-        label.setText(String.valueOf(item));
+    public void onNext(BanditData item) {
+        var templabel = labels.get(item.getID());
+        templabel.setText(String.valueOf(item.getValue()));
         subscription.request(1);
     }
 
