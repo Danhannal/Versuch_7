@@ -4,13 +4,13 @@
  */
 package BanditAdapter;
 
-import java.util.List;
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
 import javax.swing.JLabel;
 import view.MainWindowBandit;
 import versuch_7.*;
 import Model.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,11 +19,12 @@ import Model.*;
 public class ValueAdapter implements Subscriber<BanditData>
 {
     private Flow.Subscription subscription;
-    private List<JLabel> labels;
+    private ArrayList<JLabel> labels;
     private final Model model;
     
     public ValueAdapter(MainWindowBandit view, Model modelInp)
     {
+        labels = new ArrayList();
         model = modelInp;
         labels.add(view.getLblNumber0());
         labels.add(view.getLblNumber1());
