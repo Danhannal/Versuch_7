@@ -5,9 +5,11 @@
 
 package Model;
 
+import OhmLogger.OhmLogger;
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.SubmissionPublisher;
+import java.util.logging.Logger;
 import versuch_7.BanditData;
 
 /**
@@ -17,7 +19,9 @@ import versuch_7.BanditData;
 
 //add javadoc
 
-
+  /**
+   * Model which handles Threads and Subscription / Publishing
+   */
 public class Model implements Subscriber <BanditData>
 {
   private ModelThreads runningThread1;
@@ -27,8 +31,9 @@ public class Model implements Subscriber <BanditData>
   private SubmissionPublisher <BanditData> numberPublisher;
   private Flow.Subscription subscription;
 
+  private static Logger logger = OhmLogger.getLogger();
   /**
-   *
+   * Initializing Threads and Publisher
    */
   public Model()
   {
@@ -45,7 +50,7 @@ public class Model implements Subscriber <BanditData>
   }
   
   /**
-   *
+   * Call start Methods of the Threads
    */
   public void start()
   {
@@ -55,19 +60,19 @@ public class Model implements Subscriber <BanditData>
   }
 
   /**
-   *
+   * Call stop Methods of the Threads
    */
   public void stop()
   {
     runningThread1.stop();
     runningThread2.stop();
     runningThread0.stop();
-
+    
   }
 
   /**
-   *
-   * @param subscriber
+   * Add a Subscriber to the Model
+   * @param subscriber Subscriber to the Model
    */
   public void addValueObserver(Flow.Subscriber<BanditData> subscriber)
   {
@@ -77,43 +82,46 @@ public class Model implements Subscriber <BanditData>
   }
   
   /**
-   *
-   * @param subscription
+   * Subscribe Model to Object, and request first Object
+   * @param subscription Flow.Subscription of Object this is Subscribed to
    */
   @Override
   public void onSubscribe(Flow.Subscription subscription)
   {
     this.subscription = subscription;
     subscription.request(1);
+    logger.info("Subscribed");
+
     //when this is subscribed to smth
     //getClass to check identity
   }
 
   /**
-   *
-   * @param item
+   * Publish Bandit Data when it is recieved from the Models Subscription
+   * @param item Data class
    */
   @Override
   public void onNext(BanditData item)
   {
     numberPublisher.submit(item);  
     subscription.request(1);
+    logger.info("Next item recievd from thread: "+String.valueOf(item.getID()));
 
     //when update comes from subscription
   }
 
   /**
-   *
-   * @param throwable
+   * Log Error that is thrown
+   * @param throwable Error that relates to Subscription / Publishing
    */
   @Override
   public void onError(Throwable throwable)
   {
-    //add logger
+    logger.severe(String.valueOf(throwable));
   }
 
   /**
-   *
+   *Unused Method
    */
   @Override
   public void onComplete()

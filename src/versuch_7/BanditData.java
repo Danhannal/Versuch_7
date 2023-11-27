@@ -12,7 +12,7 @@ package versuch_7;
  */
 
 /**
-  * Data class which is used to transfer a value and an ID
+  * Data class which holds a value and an ID
  */
 public class BanditData 
 {
@@ -31,10 +31,10 @@ public class BanditData
   }
 
   /**
-   *
+   * This method gives access to the value of the Data Class
    * @param newValue
    * 
-   * This method gives access to the value of the Data Class
+   * 
    */
   public void changeValue(int newValue)
   {
@@ -53,10 +53,10 @@ public class BanditData
   }
 
   /**
-   *
+   * This method returns the thread ID it is used in
    * @return ID
    * 
-   * This method returns the thread ID it is used in
+   * 
    */
   public int getID()
   {
