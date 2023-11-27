@@ -33,6 +33,10 @@ public class Model implements Subscriber <BanditData>
     runningThread1 = new ModelThreads(1);
     runningThread2 = new ModelThreads(2);
     
+    runningThread0.addValueSubscriber(this);
+    runningThread1.addValueSubscriber(this);
+    runningThread2.addValueSubscriber(this);
+    
     numberPublisher = new SubmissionPublisher<>();
 
   }
