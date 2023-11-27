@@ -7,7 +7,7 @@ package BanditAdapter;
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
 import view.MainWindowBandit;
-import versuch_6.*;
+import Model.*;
 
 /**
  *
@@ -17,9 +17,9 @@ public class StateAdapter implements Subscriber<Boolean>
 {
     private Flow.Subscription subscription;
     private final MainWindowBandit view;
-    private final WuerfelModel model;
+    private final Model model;
     
-    public StateAdapter(MainWindowBandit viewInp, WuerfelModel modelInp)
+    public StateAdapter(MainWindowBandit viewInp, Model modelInp)
     {
         view = viewInp;
         model = modelInp;
