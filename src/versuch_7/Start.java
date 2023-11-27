@@ -6,6 +6,7 @@ package versuch_7;
 
 import BanditAdapter.*;
 import BanditController.CommandController;
+import Model.Model;
 import view.MainWindowBandit;
 import versuch_6.WuerfelModel;
 
@@ -18,7 +19,7 @@ public class Start {
     public Start()
     {
         var view = new MainWindowBandit();
-        var model = new WuerfelModel();
+        var model = new Model();
         var value0Observer = new ValueAdapter(view.getLblNumber2(), model);
         var value1Observer = new ValueAdapter(view.getLblNumber1(), model);
         var value2Observer = new ValueAdapter(view.getLblNumber2(), model);

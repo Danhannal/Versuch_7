@@ -45,7 +45,7 @@ public class ModelThreads implements Runnable
   }
   public void addValueSubscriber(Flow.Subscriber<BanditData> subscriber)
   {
-   // numberPublisher.subscribe();
+   numberPublisher.subscribe(subscriber);
   }
   public synchronized void stop()
   {
