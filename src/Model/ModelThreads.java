@@ -63,7 +63,7 @@ public class ModelThreads implements Runnable
    }
    public synchronized void start()
    {
-     if(started)
+     if(!started)
      {
        eService.execute(this);
        started = true;
