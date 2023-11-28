@@ -9,5 +9,9 @@ package BanditController;
  * @author MOD-USER
  */
 public interface CommandInterface {
-    public void execute();
+
+  /**
+   *
+   */
+  public void execute();
 }

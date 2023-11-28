@@ -16,7 +16,10 @@ import Model.*;
  */
 public class Start {
 
-    public Start()
+  /**
+   *
+   */
+  public Start()
     {
         var view = new MainWindowBandit();
         var model = new Model();
@@ -29,7 +32,11 @@ public class Start {
         view.setVisible(true);
     }
         
-    public static void main(String[] args) {
+  /**
+   *
+   * @param args
+   */
+  public static void main(String[] args) {
         new Start();
     }
     

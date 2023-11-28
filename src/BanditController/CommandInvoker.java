@@ -15,17 +15,29 @@ public class CommandInvoker
 {
     private HashMap<Component, CommandInterface> commands;
     
-    public CommandInvoker()
+  /**
+   *
+   */
+  public CommandInvoker()
     {
         commands = new HashMap<Component, CommandInterface>();
     }
     
-    public void addCommand(Component key, CommandInterface value)
+  /**
+   *
+   * @param key
+   * @param value
+   */
+  public void addCommand(Component key, CommandInterface value)
     {
         commands.put(key, value);
     }
     
-    public void executeCommand(Component key)
+  /**
+   *
+   * @param key
+   */
+  public void executeCommand(Component key)
     {
         commands.get(key).execute();
     }

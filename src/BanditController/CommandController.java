@@ -25,7 +25,14 @@ public class CommandController implements ActionListener
     StateAdapter stateSubscriber;
     CommandInvoker invoker;
     
-    public CommandController(MainWindowBandit viewInp, Model modelInp, ValueAdapter valueSubscriberInp, StateAdapter stateSubscriberInp)
+  /**
+   *
+   * @param viewInp
+   * @param modelInp
+   * @param valueSubscriberInp
+   * @param stateSubscriberInp
+   */
+  public CommandController(MainWindowBandit viewInp, Model modelInp, ValueAdapter valueSubscriberInp, StateAdapter stateSubscriberInp)
     {
         view = viewInp;
         model = modelInp;
@@ -34,7 +41,10 @@ public class CommandController implements ActionListener
         invoker = new CommandInvoker();
     }
     
-    public void registerEvents()
+  /**
+   *
+   */
+  public void registerEvents()
     {
         view.getBtnStart().addActionListener(this);
         view.getBtnStop().addActionListener(this);
@@ -42,13 +52,20 @@ public class CommandController implements ActionListener
         //stateSubscriber.subscribe(); //not working yet
     }
     
-    public void registerCommands()
+  /**
+   *
+   */
+  public void registerCommands()
     {
         invoker.addCommand(view.getBtnStart(), new StartCommand(view, model));
         invoker.addCommand(view.getBtnStop(), new StopCommand(view, model));
     }
     
-    @Override
+  /**
+   *
+   * @param e
+   */
+  @Override
     public void actionPerformed(ActionEvent e) {
         var key = (Component)e.getSource();
         invoker.executeCommand(key);
