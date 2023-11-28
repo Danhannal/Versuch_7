@@ -121,7 +121,7 @@ public class ModelThreads implements Runnable
         //Logger.getLogger(WuerfelModel.class.getName().severe(exception.toString()));
       }
       if(currentNumber.getValue() >= runTo){currentNumber.changeValue(runFrom);}
-      else{currentNumber.changeValue(currentNumber.getValue() + 1);     logger.info(" incremented number: "+String.valueOf(threadID)+" current number: "+String.valueOf(currentNumber.getValue()));}
+      else{currentNumber.changeValue(currentNumber.getValue() + 1);     logger.info(" incremented number: "+String.valueOf(threadID)+" current number: "+String.valueOf(currentNumber.getValue())+"\n");}
       //publish new number
 
       numberPublisher.submit(currentNumber);  

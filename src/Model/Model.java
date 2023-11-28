@@ -6,6 +6,7 @@
 package Model;
 
 import OhmLogger.OhmLogger;
+import java.util.ArrayList;
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.SubmissionPublisher;
@@ -28,8 +29,13 @@ public class Model implements Subscriber <BanditData>
   private ModelThreads runningThread0;
   
   private SubmissionPublisher <BanditData> numberPublisher;
-  private Flow.Subscription subscription;
+  
+  private Flow.Subscription subscription0;
+  private Flow.Subscription subscription1;
+  private Flow.Subscription subscription2;
 
+  private ArrayList<Flow.Subscription> subscriptions;
+  
   private static Logger logger = OhmLogger.getLogger();
   /**
    * Initializing Threads and Publisher
@@ -85,10 +91,15 @@ public class Model implements Subscriber <BanditData>
    * @param subscription Flow.Subscription of Object this is Subscribed to
    */
   @Override
-  public void onSubscribe(Flow.Subscription subscription)
+  public synchronized void onSubscribe(Flow.Subscription subscription)
   {
-    this.subscription = subscription;
+    subscriptions.add(subscription);
+    //create subscription arraylist 
+    //subscription0 = subscription;
+    logger.info("Subscription from Class" + subscription.getClass()+"\n");
+    logger.info("Subscription from Class" + subscription.toString()+"\n");
     subscription.request(1);
+    //this.numberPublisher.
     logger.info("Subscribed");
 
     //when this is subscribed to smth
@@ -102,11 +113,28 @@ public class Model implements Subscriber <BanditData>
   @Override
   public void onNext(BanditData item)
   {
+    subscriptions.get(item.getID()).request(1);
     numberPublisher.submit(item);  
-    subscription.request(1);
-    logger.info("Next item recievd from thread: "+String.valueOf(item.getID()));
+    /*+
+    //request from source again 
+    if(item.getID()==0)
+    {
+        numberPublisher.submit(item);  
+        subscriptions.get(item.getID()).request(1);
+    }
+    else if(item.getID()==1)
+    {
+        numberPublisher.submit(item);  
+        subscription1.request(1);
+    }
+    else if(item.getID()==2)
+    {
+        numberPublisher.submit(item);  
+        subscription2.request(1);
+    }*/
+    logger.info("Next item recievd from thread: "+String.valueOf(item.getID())+"\n");
 
-    //when update comes from subscription
+    //when update comes from subscription0
   }
 
   /**
