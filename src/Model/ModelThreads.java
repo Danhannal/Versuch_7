@@ -19,10 +19,10 @@ import versuch_7.BanditData;
  */
 
 
-//add javadoc
 
-
-
+  /**
+   * Runnable counter that is managed by Model
+   */
 public class ModelThreads implements Runnable
 {
   private int runFrom = 1;
@@ -44,8 +44,8 @@ public class ModelThreads implements Runnable
 //private static final Logger LOGGER = Logger.getLogger( ClassName.class.getName() );
 
   /**
-   *
-   * @param ID
+   * 
+   * @param ID Identifies which thread the Class is running in
    */
   public ModelThreads(int ID)
   {
@@ -59,8 +59,8 @@ public class ModelThreads implements Runnable
   }
 
   /**
-   *
-   * @param subscriber
+   * Add a subscriber to this
+   * @param subscriber Subscriber to this
    */
   public void addValueSubscriber(Flow.Subscriber<BanditData> subscriber)
   {
@@ -70,18 +70,18 @@ public class ModelThreads implements Runnable
   }
 
   /**
-   *
+   * set Boolean running to false which stops the thread
    */
   public synchronized void stop()
   {
      running = false;
      //set var that causes this.wait in run that uses while
      logger.info("Thread: "+ String.valueOf(threadID) +" Stopped");
-
    }
 
   /**
-   *
+   * set Boolean running to true which starts the thread
+   * On the first call initializes the executor service
    */
   public synchronized void start()
    {
@@ -98,7 +98,7 @@ public class ModelThreads implements Runnable
    }
 
   /**
-   *
+   * runnable function in which the counter is incremented
    */
   @Override
   public void run()

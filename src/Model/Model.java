@@ -17,7 +17,6 @@ import versuch_7.BanditData;
  * @author Kieran
  */
 
-//add javadoc
 
   /**
    * Model which handles Threads and Subscription / Publishing
