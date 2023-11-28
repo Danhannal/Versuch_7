@@ -42,6 +42,7 @@ public class Model implements Subscriber <BanditData>
    */
   public Model()
   {
+    subscriptions = new ArrayList<>();
     runningThread0 = new ModelThreads(0);
     runningThread1 = new ModelThreads(1);
     runningThread2 = new ModelThreads(2);
@@ -94,6 +95,7 @@ public class Model implements Subscriber <BanditData>
   public synchronized void onSubscribe(Flow.Subscription subscription)
   {
     subscriptions.add(subscription);
+    //logger.info(subscriptions.size().valueOf());
     //create subscription arraylist 
     //subscription0 = subscription;
     logger.info("Subscription from Class" + subscription.getClass()+"\n");
