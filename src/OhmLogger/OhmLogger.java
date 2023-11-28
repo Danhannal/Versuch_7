@@ -5,6 +5,7 @@
 
 package OhmLogger;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.logging.*;
 /**
@@ -14,43 +15,62 @@ import java.util.logging.*;
 public class OhmLogger 
 {
   private static Logger logger = null;
-
+  private static FileHandler fh;
   /**
-   *
+   * Set File Handler Path
    */
   public OhmLogger()
   {
+    try{
+    fh = new FileHandler("C:/temp/JAVA/TEAM-PROJEKT/INF3_2_V5/Versuch_7/MyLogFile.log");  
+    //C:\tmp\JAVA\TEAM-PROJEKT\INF3_2_V5\Versuch_7
+    }
+    catch (SecurityException e) {  
+        e.printStackTrace();  
+    } catch (IOException e) {  
+        e.printStackTrace();  
+    }  
   }
   
   /**
-   *
-   * @return
+   * 
+   * @return logger
    */
   public static Logger getLogger()
   {
     if (logger == null)
     {
       logger = Logger.getLogger("OhmLogger");
+      
       initLogger();
     }
     return logger;
   }
-  
+    /**
+   * 
+   * initialize Logger 
+   * set Formatting and add File Handler
+   */
   private static void initLogger()
   {
     ConsoleHandler consoleHandler = new ConsoleHandler();
-    consoleHandler.setFormatter(new OhmFormatter());
-    logger.addHandler(consoleHandler);
+    fh.setFormatter(new OhmFormatter());
+    logger.addHandler(fh);
   }
 }
 
 class OhmFormatter extends SimpleFormatter
 {
+    /**
+   * Set the Formatting Rules
+   * @return formatted Log
+   */
   @Override
   public String format(LogRecord record)
   {
     String logline = "";
-    
+    //| Zeitstempel | Level | Klasse (= Quelle der Meldung) | Meldung|
+
     LocalDateTime dateTime = LocalDateTime.now();
     logline += dateTime.toString();
     logline += ";" + record.getMessage();
