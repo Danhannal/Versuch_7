@@ -10,7 +10,7 @@ import view.MainWindowBandit;
 import Model.*;
 
 /**
- *
+ * NOT SUPPORTED YET
  * @author MOD-USER
  */
 public class StateAdapter implements Subscriber<Boolean>

@@ -14,7 +14,7 @@ import view.MainWindowBandit;
 import Model.*;
 
 /**
- *
+ * Connects actions from the view to commands to be executed
  * @author MOD-USER
  */
 public class CommandController implements ActionListener
@@ -26,11 +26,11 @@ public class CommandController implements ActionListener
     CommandInvoker invoker;
     
   /**
-   *
-   * @param viewInp
-   * @param modelInp
-   * @param valueSubscriberInp
-   * @param stateSubscriberInp
+   * The constructor for the command controller
+   * @param viewInp The view the events are attached to
+   * @param modelInp The model to execute actions
+   * @param valueSubscriberInp The subscriber for new value events from the model
+   * @param stateSubscriberInp The subscriber for new state events from the model
    */
   public CommandController(MainWindowBandit viewInp, Model modelInp, ValueAdapter valueSubscriberInp, StateAdapter stateSubscriberInp)
     {
@@ -42,7 +42,7 @@ public class CommandController implements ActionListener
     }
     
   /**
-   *
+   * Registers the action listeners and subscribers
    */
   public void registerEvents()
     {
@@ -53,7 +53,7 @@ public class CommandController implements ActionListener
     }
     
   /**
-   *
+   * Registers the commands that can be executed
    */
   public void registerCommands()
     {
@@ -62,8 +62,8 @@ public class CommandController implements ActionListener
     }
     
   /**
-   *
-   * @param e
+   * Occurs when a button of the view is pressed
+   * @param e The event data
    */
   @Override
     public void actionPerformed(ActionEvent e) {

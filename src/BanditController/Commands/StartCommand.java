@@ -9,7 +9,7 @@ import view.MainWindowBandit;
 import Model.*;
 
 /**
- *
+ * A command to start the model
  * @author MOD-USER
  */
 public class StartCommand implements CommandInterface
@@ -18,9 +18,9 @@ public class StartCommand implements CommandInterface
     private final Model model;
     
   /**
-   *
-   * @param viewInp
-   * @param modelInp
+   * Constructor for the start command
+   * @param viewInp The view instance the command attaches to
+   * @param modelInp The model to be started by the command
    */
   public StartCommand(MainWindowBandit viewInp, Model modelInp)
     {
@@ -29,7 +29,7 @@ public class StartCommand implements CommandInterface
     }
     
   /**
-   *
+   * Executes the start command
    */
   @Override
     public void execute() {

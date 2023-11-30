@@ -12,13 +12,13 @@ import Model.*;
 import OhmLogger.OhmLogger;
 
 /**
- *
+ * The class handling and creating the app
  * @author MOD-USER
  */
 public class Start {
 
   /**
-   *
+   * The constructor to create the application
    */
   public Start()
     {
@@ -30,13 +30,13 @@ public class Start {
         var controller = new CommandController(view, model, valueObserver, stateObserver);
         controller.registerCommands();
         controller.registerEvents();
-        view.setTitle("Digitaler Würfel 2");
+        view.setTitle("Einarmiger Bandit");
         view.setVisible(true);
     }
         
   /**
-   *
-   * @param args
+   * The function which will be called by the OS to run the application
+   * @param args The arguments
    */
   public static void main(String[] args) {
         new Start();
