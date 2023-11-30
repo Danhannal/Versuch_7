@@ -27,7 +27,7 @@ public class OhmLogger
   {
 
   }
-  
+ 
   /**
    * 
    * @return logger
@@ -50,7 +50,7 @@ public class OhmLogger
   private static void initLogger()
   {
   
-    try (InputStream configFile = new FileInputStream("config.properties"))
+    try (InputStream configFile = new FileInputStream("C:\\tmp\\JAVA\\TEAM-PROJEKT\\INF3_2_V5\\Versuch_7\\src\\OhmLogger\\config.properties"))
     {
       if (configFile != null)
       {
@@ -75,9 +75,6 @@ public class OhmLogger
         logger.setUseParentHandlers(false);
         logger.getHandlers();
         logger.addHandler(fh);
-        
-
-        
       }
       else
       {
