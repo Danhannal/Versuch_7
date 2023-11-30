@@ -9,6 +9,7 @@ import BanditController.CommandController;
 import Model.Model;
 import view.MainWindowBandit;
 import Model.*;
+import OhmLogger.OhmLogger;
 
 /**
  * The class handling and creating the app
@@ -21,6 +22,7 @@ public class Start {
    */
   public Start()
     {
+        OhmLogger logger = new OhmLogger();
         var view = new MainWindowBandit();
         var model = new Model();
         var valueObserver = new ValueAdapter(view, model);
