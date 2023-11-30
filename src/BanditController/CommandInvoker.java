@@ -8,7 +8,7 @@ import java.awt.Component;
 import java.util.HashMap;
 
 /**
- *
+ * Manages all supported commands from the application
  * @author MOD-USER
  */
 public class CommandInvoker 
@@ -16,7 +16,7 @@ public class CommandInvoker
     private HashMap<Component, CommandInterface> commands;
     
   /**
-   *
+   * The standard constructor
    */
   public CommandInvoker()
     {
@@ -24,9 +24,9 @@ public class CommandInvoker
     }
     
   /**
-   *
-   * @param key
-   * @param value
+   * Adds a new command to be called by the desired action source
+   * @param key An instance of the action source
+   * @param value An instance of the command to add
    */
   public void addCommand(Component key, CommandInterface value)
     {
@@ -34,7 +34,7 @@ public class CommandInvoker
     }
     
   /**
-   *
+   * Executes a previously added command for the action source
    * @param key
    */
   public void executeCommand(Component key)

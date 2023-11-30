@@ -9,7 +9,7 @@ import view.MainWindowBandit;
 import Model.*;
 
 /**
- *
+ * A command to stop the model
  * @author MOD-USER
  */
 public class StopCommand implements CommandInterface
@@ -18,9 +18,9 @@ public class StopCommand implements CommandInterface
     private final Model model;
     
   /**
-   *
-   * @param viewInp
-   * @param modelInp
+   * Constructor for the stop command
+   * @param viewInp The view instance the command attaches to
+   * @param modelInp The model to be started by the command
    */
   public StopCommand(MainWindowBandit viewInp, Model modelInp)
     {
@@ -29,7 +29,7 @@ public class StopCommand implements CommandInterface
     }
     
   /**
-   *
+   * Executes the stop command
    */
   @Override
     public void execute() {

@@ -5,13 +5,13 @@
 package BanditController;
 
 /**
- *
+ * Contains all supported command actions
  * @author MOD-USER
  */
 public interface CommandInterface {
 
   /**
-   *
+   * Is used to execute a command
    */
   public void execute();
 }

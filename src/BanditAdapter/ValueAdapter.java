@@ -13,7 +13,7 @@ import Model.*;
 import java.util.ArrayList;
 
 /**
- *
+ * 
  * @author MOD-USER
  */
 public class ValueAdapter implements Subscriber<BanditData>
@@ -23,9 +23,9 @@ public class ValueAdapter implements Subscriber<BanditData>
     private final Model model;
     
   /**
-   *
-   * @param view
-   * @param modelInp
+   * The standard constructor
+   * @param view The view changes will be performed to
+   * @param modelInp The model to subscribe to
    */
   public ValueAdapter(MainWindowBandit view, Model modelInp)
     {
@@ -37,7 +37,7 @@ public class ValueAdapter implements Subscriber<BanditData>
     }
 
   /**
-   *
+   * Subscribe to the model
    */
   public void subscribe()
     {
@@ -45,8 +45,8 @@ public class ValueAdapter implements Subscriber<BanditData>
     }
     
   /**
-   *
-   * @param subscription
+   * Occurs when the class subscribed to a publisher
+   * @param subscription A new subscription
    */
   @Override
     public void onSubscribe(Flow.Subscription subscription) {
@@ -55,8 +55,8 @@ public class ValueAdapter implements Subscriber<BanditData>
     }
 
   /**
-   *
-   * @param item
+   * Invoked with the publishers next item
+   * @param item the new BanditData item
    */
   @Override
     public void onNext(BanditData item) {
@@ -66,7 +66,7 @@ public class ValueAdapter implements Subscriber<BanditData>
     }
 
   /**
-   *
+   * Invoked when an errour occured
    * @param throwable
    */
   @Override
@@ -75,7 +75,7 @@ public class ValueAdapter implements Subscriber<BanditData>
     }
 
   /**
-   *
+   * Invoked when all publisher invocations occured
    */
   @Override
     public void onComplete() {
